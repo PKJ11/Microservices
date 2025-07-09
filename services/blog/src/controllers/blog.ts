@@ -6,6 +6,7 @@ import axios from "axios";
 
 export const getAllBlogs = TryCatch(async (req, res) => {
   const { searchQuery = "", category = "" } = req.query;
+  console.log("get all blog api called....")
 
   const cacheKey = `blogs:${searchQuery}:${category}`;
 
@@ -43,6 +44,7 @@ export const getAllBlogs = TryCatch(async (req, res) => {
 });
 
 export const getSingleBlog = TryCatch(async (req, res) => {
+  console.log("single blog page opened ")
   const blogid = req.params.id;
 
   const cacheKey = `blog:${blogid}`;
@@ -62,10 +64,11 @@ export const getSingleBlog = TryCatch(async (req, res) => {
       message: "no blog with this id",
     });
     return;
+
   }
 
   const { data } = await axios.get(
-    `${process.env.USER_SERVICE}/api/v1/user/${blog[0].author}`
+    `http://localhost:5000/api/v1/user/${blog[0].author}`
   );
 
   const responseData = { blog: blog[0], author: data };

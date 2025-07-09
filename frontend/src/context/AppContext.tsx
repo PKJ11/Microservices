@@ -180,7 +180,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         getSavedBlogs,
       }}
     >
-      <GoogleOAuthProvider clientId="178407096953-obhbj4k12tvutd6epmv0inb12f6cu1mb.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId="215086368492-8fe778v2jcamlh0il66c4hmlo2n0kaq2.apps.googleusercontent.com">
         {children}
         <Toaster />
       </GoogleOAuthProvider>

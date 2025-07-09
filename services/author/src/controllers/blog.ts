@@ -9,7 +9,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const createBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
   const { title, description, blogcontent, category } = req.body;
-
+  console.log("this is the ,",{title, description, blogcontent, category })
   const file = req.file;
 
   if (!file) {
@@ -33,8 +33,9 @@ export const createBlog = TryCatch(async (req: AuthenticatedRequest, res) => {
   });
 
   const result =
-    await sql`INSERT INTO blogs (title, description, image, blogcontent,category, author) VALUES (${title}, ${description},${cloud.secure_url},${blogcontent},${category},${req.user?._id}) RETURNING *`;
-
+    await sql`INSERT INTO blogs (title, description, image, blogcontent,category, author) VALUES (${title}, ${description},${cloud.secure_url},${blogcontent},${category},${req.user?._id}) RETURNING *`
+  
+  console.log("redis cahce invalidate called ")
   await invalidateChacheJob(["blogs:*"]);
 
   res.json({

@@ -9,6 +9,7 @@ import axios from "axios";
 
 export const loginUser = TryCatch(async (req, res) => {
   const { code } = req.body;
+  console.log("login api hitted")
 
   if (!code) {
     res.status(400).json({
